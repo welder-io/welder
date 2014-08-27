@@ -11,28 +11,28 @@ module.exports = {
       user: 'gitfuse',
       host: 'github.com',
       sshUser: 'git',
-      isPrivate: true
+      isPrivate: false
     },
     {
       name: 'test-bar',
       user: 'gitfuse',
       host: 'github.com',
       sshUser: 'git',
-      isPrivate: true
+      isPrivate: false
     },
     {
       name: 'test-baz',
       user: 'gitfuse',
       host: 'github.com',
       sshUser: 'git',
-      isPrivate: true
+      isPrivate: false
     },
     {
       name: 'test-qux',
       user: 'gitfuse',
       host: 'github.com',
       sshUser: 'git',
-      isPrivate: true
+      isPrivate: false
     }
   ],
   repoDir: tmpPath,
