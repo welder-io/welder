@@ -13,7 +13,7 @@ const testRepoOne = path.resolve(config.repoDir, config.registry[0].name);
 
 describe('git', function() {
 
-  this.timeout(10000);
+  this.timeout(20000);
 
   before(function() {
     helpers.clearRepos();

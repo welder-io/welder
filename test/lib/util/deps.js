@@ -6,7 +6,8 @@ const helpers = require('../../helpers');
 const config = require('../../fixtures/config');
 
 describe('deps', function() {
-  this.timeout(10000);
+
+  this.timeout(20000);
 
   before(function() {
     return helpers.setup();

@@ -12,8 +12,9 @@ const testRepoOne = path.resolve(config.repoDir, config.registry[0].name);
 
 describe('npm', function() {
 
+  this.timeout(20000);
+
   describe('::execInstall', function() {
-    this.timeout(10000);
 
     before(function() {
       return helpers.setup();

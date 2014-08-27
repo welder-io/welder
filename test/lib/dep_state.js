@@ -15,8 +15,10 @@ const fuse = new Gitfuse({
 
 const testRepoOne = path.resolve(config.repoDir, config.registry[0].name);
 
-describe('depState', function() {
+describe('#depState', function() {
 
+  this.timeout(20000);
+  
   before(function() {
     return helpers.setup();
   });

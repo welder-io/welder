@@ -4,10 +4,11 @@ const config = require('../../fixtures/config');
 
 describe('github', function() {
 
+  this.timeout(20000);
+
   describe('::requestFile', function() {
 
     it('should request a file from a github repostiory', function() {
-      this.timeout(10000);
       return github.requestFile(config.registry[0], 'package.json').
         then(function(file) {
           expect(JSON.parse(file)).to.deep.equal({
