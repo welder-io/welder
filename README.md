@@ -1,4 +1,4 @@
-# gitfuse
+# gitfuse [![Build Status](https://secure.travis-ci.org/gitfuse/gitfuse.png)](http://travis-ci.org/gitfuse/gitfuse)
 > A tool for managing node-based projects with nested git dependencies easily.
 
 ## What is it?
