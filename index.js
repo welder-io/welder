@@ -15,12 +15,12 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
   this.dependencyKey = opts.dependencyKey || 'dependencies';
   this.deptrace = new Deptrace({
     setup: function() {
-      // get registry once for the duration of this graphing run
+      // get registry once for the duration of each graphing run
       // this is pretty hack, but it's likely safe to assume
       // the registry won't change rapidly enough to ever matter
       return this.loadRegistry().then(function(registry) {
         this.registryResolved = registry;
-      });
+      }.bind(this));
     }.bind(this),
     // extract array of dependencies from a specified key in package.json
     depsFor: Deptrace.packageJson(this.dependencyKey),
@@ -45,4 +45,4 @@ Gitfuse.prototype.sync = require('./lib/sync');
 Gitfuse.prototype.find = require('./lib/find');
 Gitfuse.prototype.loadRegistry = require('./lib/load_registry');
 Gitfuse.prototype.requestFileFromGithub =
-  require('./lib/util/github').requestFile; 
+  require('./lib/util/github').requestFile;
