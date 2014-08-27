@@ -26,7 +26,7 @@ describe('depState', function() {
       gitfuse: {
         cwd: testRepoOne
       }
-    }, require(path.join(testRepoOne, 'package'))).then(function (state) {
+    }, require(path.join(testRepoOne, 'package'))).then(function(state) {
       expect(state).to.exist;
     });
   });

@@ -17,7 +17,7 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
     // extracting array of dependencies from a specified key in package.json
     depsFor: Deptrace.packageJson(this.dependencyKey),
     // find package.json for dependency and calculate gitfuse state
-    resolve: function (dep, parents) {
+    resolve: function(dep, parents) {
       return github.packageJson(_.extend(dep, this.find(dep.name)))
         .then(this.depState.bind(this, parents[parents.length -1]));
     }.bind(this)

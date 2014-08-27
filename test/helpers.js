@@ -12,7 +12,7 @@ const fuse = new Gitfuse({
   dependencyKey: 'gitfuseDependencies'
 });
 
-exports.clearRepos = function () {
+exports.clearRepos = function() {
   rimraf(config.repoDir);
   fs.mkdirSync(config.repoDir);
 };

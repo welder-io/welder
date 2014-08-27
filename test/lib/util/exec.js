@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const exec = require('../../../lib/util/exec');
 const fs = require('fs');
 
-describe('exec', function() {
+describe.skip('exec', function() {
 
   it('should resolve to the stdout/code of a command', function() {
     return exec('cat README.md').then(function(result) {
