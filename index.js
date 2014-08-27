@@ -14,11 +14,11 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
   this.moduleDir = opts.moduleDir || 'node_modules';
   this.dependencyKey = opts.dependencyKey || 'dependencies';
   this.deptrace = new Deptrace({
-    setup: function () {
+    setup: function() {
       // get registry once for the duration of this graphing run
       // this is pretty hack, but it's likely safe to assume
       // the registry won't change rapidly enough to ever matter
-      return this.loadRegistry().then(function (registry) {
+      return this.loadRegistry().then(function(registry) {
         this.registryResolved = registry;
       });
     }.bind(this),

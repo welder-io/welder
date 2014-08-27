@@ -30,24 +30,24 @@ describe('promise', function() {
 
 
   describe('::resultOf', function() {
-    var value = 'value'
+    var value = 'value';
 
     it('should resolve a literal value', function() {
-      return promise.resultOf(value).then(function (result) {
+      return promise.resultOf(value).then(function(result) {
         expect(result).to.equal(value);
       });
     });
 
     it('should resolve a method which returns sync', function() {
       return promise.resultOf(function() { return value; }).
-        then(function (result) {
+        then(function(result) {
           expect(result).to.equal(value);
         });
     });
 
     it('should resolve a method which returns async', function() {
       return promise.resultOf(promise.method(function() { return value; })).
-        then(function (result) {
+        then(function(result) {
           expect(result).to.equal(value);
         });
     });

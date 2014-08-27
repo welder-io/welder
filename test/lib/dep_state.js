@@ -26,12 +26,12 @@ describe('#depState', function() {
 
   it('should calculate the status of a repository', function() {
     var meta = require(path.resolve(testRepoOne, 'package'));
-    return fuse.find(meta.name).then(function (dep) {
+    return fuse.find(meta.name).then(function(dep) {
       return fuse.depState(
         { isRoot: true, gitfuse: { cwd: testRepoOne } },
         _.extend(meta, { registryEntry: dep })
       );
-    }).then(function (state) {
+    }).then(function(state) {
       var graph = _.cloneDeep(config.depGraph);
       delete graph.nodes;
       delete graph.label;
