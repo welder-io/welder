@@ -24,22 +24,22 @@
   "devDependencies": {
     "chai": "~1.9.1",
     "mocha": "~1.18.2",
-    "rimraf": "^2.2.8",
-    "lodash": "^2.4.1"
+    "rimraf": "~2.2.8",
+    "lodash": "~2.4.1"
   },
   "dependencies": {
     "archy": "0.0.2",
-    "bluebird": "^2.2.1",
-    "chalk": "^0.5.0",
-    "deptrace": "^0.2.1",
-    "ghauth": "^0.3.1",
+    "bluebird": "~2.2.1",
+    "chalk": "~0.5.0",
+    "deptrace": "~0.2.1",
+    "ghauth": "~0.3.1",
     "linken": "git://github.com/tkellen/node-linken",
-    "mkdirp": "^0.5.0",
-    "request": "^2.37.0",
-    "rimraf": "^2.2.8",
-    "semver": "^3.0.1",
-    "traverse": "^0.6.6",
-    "which": "^1.0.5"
+    "mkdirp": "~0.5.0",
+    "request": "~2.37.0",
+    "rimraf": "~2.2.8",
+    "semver": "~3.0.1",
+    "traverse": "~0.6.6",
+    "which": "~1.0.5"
   },
   "keywords": [
     "git dependencies",
