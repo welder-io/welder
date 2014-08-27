@@ -44,3 +44,5 @@ Gitfuse.prototype.status = require('./lib/status');
 Gitfuse.prototype.sync = require('./lib/sync');
 Gitfuse.prototype.find = require('./lib/find');
 Gitfuse.prototype.loadRegistry = require('./lib/load_registry');
+Gitfuse.prototype.requestFileFromGithub =
+  require('./lib/util/github').requestFile; 
