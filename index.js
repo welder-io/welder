@@ -14,7 +14,7 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
   this.moduleDir = opts.moduleDir || 'node_modules';
   this.dependencyKey = opts.dependencyKey || 'dependencies';
   this.deptrace = new Deptrace({
-    // extracting array of dependencies from a specified key in package.json
+    // extract array of dependencies from a specified key in package.json
     depsFor: Deptrace.packageJson(this.dependencyKey),
     // find package.json for dependency and calculate gitfuse state
     resolve: function(dep, parents) {
