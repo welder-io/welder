@@ -12,7 +12,7 @@ describe('Gitfuse', function() {
   require('./lib/util/pkg');
   require('./lib/util/promise');
   require('./lib/util/resolve');
-  
+
   describe('constructor', function() {
 
   });

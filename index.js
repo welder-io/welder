@@ -14,11 +14,23 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
   this.moduleDir = opts.moduleDir || 'node_modules';
   this.dependencyKey = opts.dependencyKey || 'dependencies';
   this.deptrace = new Deptrace({
+    setup: function () {
+      // get registry once for the duration of this graphing run
+      // this is pretty hack, but it's likely safe to assume
+      // the registry won't change rapidly enough to ever matter
+      return this.loadRegistry().then(function (registry) {
+        this.registryResolved = registry;
+      });
+    }.bind(this),
     // extract array of dependencies from a specified key in package.json
     depsFor: Deptrace.packageJson(this.dependencyKey),
-    // find package.json for dependency and calculate gitfuse state
+    // resolve each dependency to a more complete representation
     resolve: function(dep, parents) {
-      return github.packageJson(_.extend(dep, this.find(dep.name)))
+      // find dependency in registry
+      return this.find(dep.name, this.registryResolved)
+        // add data from package.json on github
+        .then(github.packageJson)
+        // add state from local machine
         .then(this.depState.bind(this, parents[parents.length -1]));
     }.bind(this)
   });
@@ -26,8 +38,9 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
 util.inherits(Gitfuse, EE);
 
 Gitfuse.prototype.init = require('./lib/init');
-Gitfuse.prototype.find = require('./lib/find');
 Gitfuse.prototype.depState = require('./lib/dep_state');
 Gitfuse.prototype.graph = require('./lib/graph');
 Gitfuse.prototype.status = require('./lib/status');
 Gitfuse.prototype.sync = require('./lib/sync');
+Gitfuse.prototype.find = require('./lib/find');
+Gitfuse.prototype.loadRegistry = require('./lib/load_registry');
