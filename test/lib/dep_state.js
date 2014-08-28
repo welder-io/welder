@@ -1,7 +1,6 @@
 const path = require('path');
 
 const expect = require('chai').expect;
-const _ = require('lodash');
 
 const config = require('../fixtures/config');
 const helpers = require('../helpers');
