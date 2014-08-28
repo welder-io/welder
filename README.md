@@ -5,7 +5,7 @@
 
 ## API
 
-### constructor(opts)
+### `constructor(opts)`
 
 Create an instance of Gitfuse to work on your project.
 
@@ -51,10 +51,11 @@ A registry of repositories Gitfuse should manage, or a function which returns a 
 Type: `Array|Function`  
 Default: `[]`
 
-##### Example
+##### Usage
 
 Using async registry retreival:
 ```js
+const Gitfuse = require('./');
 const fuse = new Gitfuse({
   concurrency: 4,
   moduleDir: 'node_modules',
@@ -75,6 +76,7 @@ const fuse = new Gitfuse({
 
 Using sync registry definition:
 ```js
+const Gitfuse = require('./');
 const fuse = new Gitfuse({
   concurrency: 4,
   moduleDir: 'node_modules',
@@ -114,7 +116,23 @@ const fuse = new Gitfuse({
 });
 ```
 
-### init(opts)
+### `events`
+
+Gitfuse subclasses [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).  The following is available on each instance:
+
+#### .on('debug', Function)
+Verbose logging typically meant to be ignored unless explicitly requested.
+
+#### .on('write', Function)
+Standard logging for status messages during execution.
+
+#### .on('ok', Function)
+Standard logging for success messages during execution.
+
+#### .on('error', Function)
+Standard logging for failure messages during execution.
+
+### `init(opts)`
 
 Use this to initialize a directory with all repositories your instance of Gitfuse is managing.
 
@@ -125,3 +143,87 @@ Does the following:
 3. Clones any repositories that are missing.
 4. Symlinks all repositories together.
 4. Runs `npm install` inside each new repository.
+
+#### opts.dir
+
+The directory to initialize.
+
+Type: `String`  
+Default: `null`
+
+#### opts.repos
+
+The repositories initialize.  If none provided, the entire registry will be used.
+
+Type: `Array`  
+Default: `this.loadRegistry()`
+
+Example entry format:
+```js
+{
+  name: 'test-foo',
+  user: 'gitfuse',
+  host: 'github.com',
+  sshUser: 'git',
+  isPrivate: false
+}
+```
+
+Usage:
+```js
+const Gitfuse = require('./');
+const chalk = require('chalk');
+const DEBUG = true;
+
+const fuse = new Gitfuse({
+  registry: function () {
+    return this.requestFileFromGithub({
+      name: 'gitfuse',
+      user: 'gitfuse',
+      host: 'github.com',
+      sshUser: 'git',
+      isPrivate: true
+    }, 'test/fixtures/registry.json').then(JSON.parse);
+  }
+});
+fuse.on('debug', function(msg) {
+  if (DEBUG) {
+    console.log(msg);
+  }
+});
+fuse.on('write', function(msg) {
+  console.log(msg);
+});
+fuse.on('ok', function(msg) {
+  console.log(chalk.green(msg));
+});
+fuse.on('error', function(msg) {
+  console.log(chalk.red(msg));
+});
+
+fuse.repos('./test');
+```
+
+### `graph(dir)`
+
+Returns a promise which resolves to a dependency graph of the provided directory.
+
+### `status(dir)`
+
+Emits write events which display a hierarchical representation of the current dependency graph.
+
+### `sync(dir)`
+
+Write me!
+
+### `find(name)`
+
+Write me!
+
+### `loadRegistry()`
+
+Write me!
+
+### `requestFileFromGithub(registryEntry, filename)`
+
+Write me!
