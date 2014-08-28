@@ -41,7 +41,7 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
           }).then(function (state) {
             meta.gitfuse = state;
             return meta;
-          }.bind(this));
+          });
         }.bind(this));
     }.bind(this)
   });
