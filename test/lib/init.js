@@ -29,7 +29,7 @@ describe('#init', function() {
     rimraf(path.join(config.repoDir, config.registry[0].name));
     return fuse.init({
       repos: config.registry,
-      cwd: config.repoDir,
+      dir: config.repoDir,
     }).then(function() {
       expect(fs.readdirSync(config.repoDir).length).to.equal(4);
     });
