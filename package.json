@@ -1,6 +1,6 @@
 {
   "name": "gitfuse",
-  "description": "A tool for managing node-based projects with nested git dependencies easily.",
+  "description": "Manage projects with nested git dependencies easily.",
   "version": "0.1.0",
   "homepage": "https://github.com/gitfuse/gitfuse",
   "authors": [

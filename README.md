@@ -1,5 +1,5 @@
 # gitfuse [![Build Status](https://secure.travis-ci.org/gitfuse/gitfuse.png)](http://travis-ci.org/gitfuse/gitfuse)
-> A tool for managing node-based projects with nested git dependencies easily.
+> Manage projects with nested git dependencies easily.
 
 ## What is it?
 Say you want to develop an application whose parts are comprised of multiple discreet git repositories. At first blush, it might seem like [submodules] could solve this problem. In actuality, they're very cumbersome to work with. If you disagree, I suggest giving it a shot! If you decide they suck (like we did), you can come back here and pick up where you left off.
