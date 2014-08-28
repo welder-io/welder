@@ -24,8 +24,7 @@ describe('#graph', function() {
 
   it('should perform a networked dependency graph', function() {
     return fuse.graph(testRepoOne).then(function(graph) {
-      expect(JSON.stringify(graph))
-        .to.deep.equal(JSON.stringify(config.depGraph));
+      expect(graph).to.deep.equal(config.depGraph);
     });
   });
 

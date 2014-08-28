@@ -84,6 +84,7 @@ module.exports = {
         },
         gitfuse: {
           cwd: path.join(tmpPath, 'test-foo'),
+          isRoot: false,
           repoPath: path.join(tmpPath, 'test-bar'),
           localExists: true,
           isGitRepo: true,
@@ -110,6 +111,7 @@ module.exports = {
             },
             gitfuse: {
               cwd: path.join(tmpPath, 'test-foo'),
+              isRoot: false,
               repoPath: path.join(tmpPath, 'test-baz'),
               localExists: true,
               isGitRepo: true,
@@ -133,6 +135,7 @@ module.exports = {
                 },
                 gitfuse: {
                   cwd: path.join(tmpPath, 'test-foo'),
+                  isRoot: false,
                   repoPath: path.join(tmpPath, 'test-qux'),
                   localExists: true,
                   isGitRepo: true,
@@ -161,6 +164,7 @@ module.exports = {
         },
         gitfuse: {
           cwd: path.join(tmpPath, 'test-foo'),
+          isRoot: false,
           repoPath: path.join(tmpPath, 'test-qux'),
           localExists: true,
           isGitRepo: true,
