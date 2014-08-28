@@ -19,5 +19,5 @@ exports.clearRepos = function() {
 
 exports.setup = function() {
   exports.clearRepos();
-  return fuse.init({dir:config.repoDir});
+  return fuse.init(config.repoDir);
 };

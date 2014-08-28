@@ -27,12 +27,10 @@ describe('#init', function() {
 
   it('should find missing repos and add them to a directory', function() {
     rimraf(path.join(config.repoDir, config.registry[0].name));
-    return fuse.init({
-      repos: config.registry,
-      dir: config.repoDir,
-    }).then(function() {
-      expect(fs.readdirSync(config.repoDir).length).to.equal(4);
-    });
+    return fuse.init(config.repoDir, {repos: config.registry})
+      .then(function() {
+        expect(fs.readdirSync(config.repoDir).length).to.equal(4);
+      });
   });
 
 });
