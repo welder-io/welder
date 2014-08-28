@@ -32,10 +32,7 @@ describe('#depState', function() {
         _.extend(meta, { registryEntry: dep })
       );
     }).then(function(state) {
-      var graph = _.cloneDeep(config.depGraph);
-      delete graph.nodes;
-      delete graph.label;
-      expect(state).to.deep.equal(graph);
+      expect(state).to.deep.equal(config.depGraph.gitfuse);
     });
   });
 

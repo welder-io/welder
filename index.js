@@ -31,7 +31,13 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
         // add data from package.json on github
         .then(github.packageJson)
         // add state from local machine
-        .then(this.depState.bind(this, parents[parents.length -1]));
+        .then(function(pkg) {
+          var parent = parents[parents.length -1]
+          return this.depState(parent, pkg).then(function (state) {
+            pkg.gitfuse = state;
+            return pkg;
+          }.bind(this));
+        }.bind(this));
     }.bind(this)
   });
 };
