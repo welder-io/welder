@@ -1,4 +1,4 @@
-# gitfuse [![Build Status](https://secure.travis-ci.org/gitfuse/gitfuse.png)](http://travis-ci.org/gitfuse/gitfuse)
+# gitfuse
 > Manage projects with nested git dependencies easily.
 
 ## What is it?
