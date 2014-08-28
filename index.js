@@ -35,7 +35,8 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
           var parent = parents[parents.length -1];
           return this.depState({
             cwd: parent.gitfuse.cwd,
-            meta: meta,
+            name: meta.name,
+            registryEntry: meta.registryEntry,
             version: parent[this.dependencyKey][meta.name]
           }).then(function (state) {
             meta.gitfuse = state;

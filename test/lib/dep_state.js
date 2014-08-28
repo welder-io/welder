@@ -26,11 +26,11 @@ describe('#depState', function() {
 
   it('should calculate the status of a repository', function() {
     var meta = require(path.resolve(testRepoOne, 'package'));
-    return fuse.find(meta.name).then(function(dep) {
-      meta.registryEntry = dep;
+    return fuse.find(meta.name).then(function(registryEntry) {
       return fuse.depState({
         cwd: testRepoOne,
-        meta: meta,
+        name: meta.name,
+        registryEntry: registryEntry,
         isRoot: true
       });
     }).then(function(state) {
