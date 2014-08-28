@@ -9,22 +9,21 @@ const resolve = require('../../../lib/util/resolve');
 const helpers = require('../../helpers');
 const config = require('../../fixtures/config');
 
-const testRepoOne = path.resolve(config.repoDir, config.registry[0].name);
+const testBar = path.resolve(config.repoDir, config.registry[1].name);
 
 describe('git', function() {
 
   this.timeout(20000);
 
   before(function() {
-    helpers.clearRepos();
-    return git.clone(resolve.remote(config.registry[0]), config.repoDir);
+    return helpers.setup();
   });
 
   describe('#clone', function() {
 
     it('should clone a repo into a specified path', function() {
       // tested by before hook, just verify output here
-      expect(fs.existsSync(testRepoOne)).to.be.true;
+      expect(fs.existsSync(testBar)).to.be.true;
     });
 
     it('should throw an error if clone fails', function(done) {
@@ -38,7 +37,7 @@ describe('git', function() {
   describe('#branch', function() {
 
     it('should eventually return the branch of a given repo', function() {
-      return git.branch(testRepoOne).then(function(result) {
+      return git.branch(testBar).then(function(result) {
         expect(result).to.equal('master');
       });
     });
@@ -54,8 +53,8 @@ describe('git', function() {
   describe('#sha', function() {
 
     it('should return the current commit of a given repo', function() {
-      return git.sha(testRepoOne).then(function(result) {
-        expect(result).to.equal('1cc2684d0f250aedfa7398e03cd8fa785ec97e4d');
+      return git.sha(testBar).then(function(result) {
+        expect(result).to.equal('47e1d99cba8ccb24624c571bbf420b2c09a3e326');
       });
     });
 
@@ -70,14 +69,14 @@ describe('git', function() {
   describe('#remoteSha', function() {
 
     it('should resolve the current sha on the remote origin', function() {
-      return git.remote(testRepoOne).then(function(remote) {
-        return git.remoteSha(testRepoOne, 'origin', 'master')
+      return git.remote(testBar).then(function(remote) {
+        return git.remoteSha(testBar, 'origin', 'master')
           .then(function(result) {
-            expect(result).to.equal('1cc2684d0f250aedfa7398e03cd8fa785ec97e4d');
+            expect(result).to.equal('47e1d99cba8ccb24624c571bbf420b2c09a3e326');
           })
-          .return(git.remoteSha(testRepoOne, remote, 'master'))
+          .return(git.remoteSha(testBar, remote, 'master'))
           .then(function(result) {
-            expect(result).to.equal('1cc2684d0f250aedfa7398e03cd8fa785ec97e4d');
+            expect(result).to.equal('47e1d99cba8ccb24624c571bbf420b2c09a3e326');
           });
       });
     });
@@ -94,20 +93,31 @@ describe('git', function() {
   describe('#isClean', function() {
 
     it('should eventually be true if repo is clean', function() {
-      return git.isClean(testRepoOne).then(function(result) {
+      return git.isClean(testBar).then(function(result) {
         expect(result).to.be.true;
       });
     });
 
     it('should eventually be false if repo is not clean', function() {
-      fs.writeFileSync(path.join(testRepoOne, 'tmp'), 'tmp', 'utf-8');
-      return git.isClean(testRepoOne).then(function(result) {
+      fs.writeFileSync(path.join(testBar, 'tmp'), 'tmp', 'utf-8');
+      return git.isClean(testBar).then(function(result) {
         expect(result).to.be.false;
       });
     });
 
   });
 
+  describe('#remoteVersions', function() {
+
+    it('should return an array of tag and head names for a remote', function() {
+      return git.remoteVersions(resolve.remote(config.registry[1]))
+        .then(function(result) {
+          expect(result)
+            .to.deep.equal(['master', '0.1.0', '0.1.1', 'v0.2.0']);
+        });
+    });
+  });
+/*
   describe('#fetch', function() {
 
     it('should fetch a specified commit-ish from a provide remote', function() {
@@ -115,21 +125,18 @@ describe('git', function() {
     });
 
   });
-/*
+*/
   describe('#checkout', function() {
 
     it('should check out a provided commit-ish', function() {
-      var commitIsh = '1cc2684d0f250aedfa7398e03cd8fa785ec97e4d';
-      return git.checkout(
-        testRepoOne,
-        commitIsh
-      ).then(function() {
-        return git.sha(testRepoOne).then(function(sha) {
+      var commitIsh = '623d3eeccd4862153dbe1b36258b7aa8f8dcc8e8';
+      return git.checkout(testBar, commitIsh).then(function() {
+        return git.sha(testBar).then(function(sha) {
           expect(sha).to.equal(commitIsh);
         });
       });
     });
 
   });
-*/
+
 });

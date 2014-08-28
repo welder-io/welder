@@ -69,7 +69,7 @@ module.exports = {
     nodes: [
       {
         name: 'test-bar',
-        version: '0.1.0',
+        version: '0.2.0',
         description: 'test repo for gitfuse',
         private: true,
         gitfuseDependencies: {
@@ -88,8 +88,8 @@ module.exports = {
           repoPath: path.join(tmpPath, 'test-bar'),
           localExists: true,
           isGitRepo: true,
-          localSha: 'cd66ca39da8087db8da7b6c964d9e6bd4db878d5',
-          remoteSha: 'cd66ca39da8087db8da7b6c964d9e6bd4db878d5',
+          localSha: '47e1d99cba8ccb24624c571bbf420b2c09a3e326',
+          remoteSha: '47e1d99cba8ccb24624c571bbf420b2c09a3e326',
           isClean: true
         },
         label: 'test-bar',
@@ -187,7 +187,7 @@ module.exports.flatDepGraph = [
 
 module.exports.depVisualize = [
   'test-foo ' + chalk.green('(1cc2684d)'),
-  '├─┬ test-bar ' + chalk.green('(cd66ca39)'),
+  '├─┬ test-bar ' + chalk.green('(47e1d99c)'),
   '│ └─┬ test-baz ' + chalk.green('(77b8d344)'),
   '│   └── test-qux ' + chalk.green('(3e08d75d)'),
   '└── test-qux ' + chalk.red('(3e08d75d)') + ' (expected 0685562b)'
