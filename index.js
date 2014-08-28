@@ -5,6 +5,7 @@ const _ = require('lodash');
 const Deptrace = require('deptrace');
 
 const github = require('./lib/util/github');
+const deps = require('./lib/util/deps');
 
 const Gitfuse = module.exports = function Gitfuse(opts) {
   opts = opts || {};
@@ -49,7 +50,7 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
         // add state from local machine
         .then(function(meta) {
           var parent = parents[parents.length -1];
-          return this.depState({
+          return deps.state({
             cwd: parent.gitfuse.cwd,
             name: meta.name,
             registryEntry: meta.registryEntry,
@@ -65,7 +66,6 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
 util.inherits(Gitfuse, EE);
 
 Gitfuse.prototype.init = require('./lib/init');
-Gitfuse.prototype.depState = require('./lib/dep_state');
 Gitfuse.prototype.graph = require('./lib/graph');
 Gitfuse.prototype.status = require('./lib/status');
 Gitfuse.prototype.sync = require('./lib/sync');

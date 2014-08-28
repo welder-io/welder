@@ -1,9 +1,13 @@
+const path = require('path');
+
 const expect = require('chai').expect;
 
 const deps = require('../../../lib/util/deps');
 
 const helpers = require('../../helpers');
 const config = require('../../fixtures/config');
+
+const testRepoOne = path.resolve(config.repoDir, config.registry[0].name);
 
 describe('deps', function() {
 
@@ -26,5 +30,19 @@ describe('deps', function() {
         .to.deep.equal(config.depVisualize);
     });
   });
+
+  describe('::state', function() {
+    it('should calculate the status of a repository', function() {
+      var meta = require(path.join(testRepoOne, 'package'));
+      return deps.state({
+        cwd: testRepoOne,
+        name: meta.name,
+        registryEntry: require('../../fixtures/registry')[0],
+        isRoot: true
+      }).then(function(state) {
+        expect(state).to.deep.equal(config.depGraph.gitfuse);
+      });
+    });
+  })
 
 });

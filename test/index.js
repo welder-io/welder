@@ -15,7 +15,6 @@ describe('Gitfuse', function() {
 
   require('./lib/init');
   require('./lib/find');
-  require('./lib/dep_state');
   require('./lib/graph');
 
 });
