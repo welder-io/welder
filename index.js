@@ -9,12 +9,13 @@ const github = require('./lib/util/github');
 const Gitfuse = module.exports = function Gitfuse(opts) {
   opts = opts || {};
 
-  this.registry = opts.registry || [];
   this.concurrency = opts.concurrency || require('os').cpus().length;
+  this.registry = opts.registry || [];
   this.moduleDir = opts.moduleDir || 'node_modules';
-  this.dependencyKey = opts.dependencyKey || 'dependencies';
   this.configurationFile = opts.configurationFile || 'package.json';
+  this.dependencyKey = opts.dependencyKey || 'dependencies';
   this.installCommand = opts.installCommand || 'npm install';
+
   this.deptrace = new Deptrace({
     setup: function() {
       // get registry once for the duration of each graphing run
