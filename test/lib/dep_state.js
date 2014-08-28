@@ -27,10 +27,12 @@ describe('#depState', function() {
   it('should calculate the status of a repository', function() {
     var meta = require(path.resolve(testRepoOne, 'package'));
     return fuse.find(meta.name).then(function(dep) {
-      return fuse.depState(
-        { isRoot: true, gitfuse: { cwd: testRepoOne } },
-        _.extend(meta, { registryEntry: dep })
-      );
+      meta.registryEntry = dep;
+      return fuse.depState({
+        cwd: testRepoOne,
+        meta: meta,
+        isRoot: true
+      });
     }).then(function(state) {
       expect(state).to.deep.equal(config.depGraph.gitfuse);
     });
