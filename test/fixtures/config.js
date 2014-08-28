@@ -5,36 +5,7 @@ const chalk = require('chalk');
 const tmpPath = path.resolve(__dirname, '..', '..', '.tmp');
 
 module.exports = {
-  registry: [
-    {
-      name: 'test-foo',
-      user: 'gitfuse',
-      host: 'github.com',
-      sshUser: 'git',
-      isPrivate: false
-    },
-    {
-      name: 'test-bar',
-      user: 'gitfuse',
-      host: 'github.com',
-      sshUser: 'git',
-      isPrivate: false
-    },
-    {
-      name: 'test-baz',
-      user: 'gitfuse',
-      host: 'github.com',
-      sshUser: 'git',
-      isPrivate: false
-    },
-    {
-      name: 'test-qux',
-      user: 'gitfuse',
-      host: 'github.com',
-      sshUser: 'git',
-      isPrivate: false
-    }
-  ],
+  registry: require('./registry.json'),
   repoDir: tmpPath,
   depGraph: {
     name: 'test-foo',

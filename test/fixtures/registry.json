@@ -1,0 +1,30 @@
+[
+  {
+    "name": "test-foo",
+    "user": "gitfuse",
+    "host": "github.com",
+    "sshUser": "git",
+    "isPrivate": false
+  },
+  {
+    "name": "test-bar",
+    "user": "gitfuse",
+    "host": "github.com",
+    "sshUser": "git",
+    "isPrivate": false
+  },
+  {
+    "name": "test-baz",
+    "user": "gitfuse",
+    "host": "github.com",
+    "sshUser": "git",
+    "isPrivate": false
+  },
+  {
+    "name": "test-qux",
+    "user": "gitfuse",
+    "host": "github.com",
+    "sshUser": "git",
+    "isPrivate": false
+  }
+]
