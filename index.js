@@ -13,6 +13,7 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
   this.concurrency = opts.concurrency || require('os').cpus().length;
   this.moduleDir = opts.moduleDir || 'node_modules';
   this.dependencyKey = opts.dependencyKey || 'dependencies';
+  this.configurationFile = opts.configurationFile || 'package.json';
   this.installCommand = opts.installCommand || 'npm install';
   this.deptrace = new Deptrace({
     setup: function() {
@@ -23,14 +24,27 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
         this.registryResolved = registry;
       }.bind(this));
     }.bind(this),
-    // extract array of dependencies from a specified key in package.json
+    // extract array of dependencies from configuration
     depsFor: Deptrace.packageJson(this.dependencyKey),
     // resolve each dependency to a more complete representation
     resolve: function(dep, parents) {
       // find dependency in registry
       return this.find(dep.name, this.registryResolved)
-        // add data from package.json on github
-        .then(github.packageJson)
+        .then(function(registryEntry) {
+          var config = this.configurationFile;
+          // find config file on github
+          return github.requestFile(registryEntry, config)
+            .then(JSON.parse)
+            .then(function (json) {
+              // save registryEntry data on configuration file
+              json.registryEntry = registryEntry;
+              return json;
+            }).catch(function() {
+              throw new Error(
+                'Unable to find ' + config + ' for ' + registryEntry.name
+              );
+            });
+        }.bind(this))
         // add state from local machine
         .then(function(meta) {
           var parent = parents[parents.length -1];

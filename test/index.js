@@ -6,7 +6,6 @@ describe('Gitfuse', function() {
   //require('./lib/util/link');
   //require('./lib/util/logger');
   require('./lib/util/pfs');
-  require('./lib/util/pkg');
   require('./lib/util/promise');
   require('./lib/util/resolve');
 
