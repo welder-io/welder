@@ -13,6 +13,7 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
   this.concurrency = opts.concurrency || require('os').cpus().length;
   this.moduleDir = opts.moduleDir || 'node_modules';
   this.dependencyKey = opts.dependencyKey || 'dependencies';
+  this.installCommand = opts.installCommand || 'npm install';
   this.deptrace = new Deptrace({
     setup: function() {
       // get registry once for the duration of each graphing run
