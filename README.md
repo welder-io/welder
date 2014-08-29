@@ -132,7 +132,7 @@ Standard logging for success messages during execution.
 #### .on('error', Function)
 Standard logging for failure messages during execution.
 
-### `init(opts)`
+### `init(dir, opts)`
 
 Use this to initialize a directory with all repositories your instance of Gitfuse is managing.
 
@@ -143,13 +143,6 @@ Does the following:
 3. Clones any repositories that are missing.
 4. Symlinks all repositories together.
 4. Runs `npm install` inside each new repository.
-
-#### opts.dir
-
-The directory to initialize.
-
-Type: `String`  
-Default: `null`
 
 #### opts.repos
 
@@ -214,7 +207,7 @@ Emits write events which display a hierarchical representation of the current de
 
 ### `sync(dir)`
 
-Write me!
+
 
 ### `find(name)`
 
