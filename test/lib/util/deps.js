@@ -37,6 +37,7 @@ describe('deps', function() {
       return deps.state({
         cwd: testRepoOne,
         name: meta.name,
+        version: meta.version,
         registryEntry: require('../../fixtures/registry')[0],
         isRoot: true
       }).then(function(state) {
