@@ -1,4 +1,8 @@
-{
+const path = require('path');
+
+const tmpDir = path.resolve(__dirname, '..', '..', '.tmp');
+
+module.exports = {
   "name": "test-foo",
   "description": "test repo for gitfuse",
   "version": "0.1.0",
@@ -18,9 +22,9 @@
     "isPrivate": false
   },
   "gitfuse": {
-    "cwd": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-foo",
+    "cwd": path.join(tmpDir, 'test-foo'),
     "isRoot": true,
-    "repoPath": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-foo",
+    "repoPath": path.join(tmpDir, 'test-foo'),
     "localExists": true,
     "isGitRepo": true,
     "expectedVersion": "0.1.0",
@@ -46,9 +50,9 @@
         "isPrivate": false
       },
       "gitfuse": {
-        "cwd": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-foo",
+        "cwd": path.join(tmpDir, 'test-foo'),
         "isRoot": false,
-        "repoPath": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-bar",
+        "repoPath": path.join(tmpDir, 'test-bar'),
         "localExists": true,
         "isGitRepo": true,
         "expectedVersion": "master",
@@ -74,9 +78,9 @@
             "isPrivate": false
           },
           "gitfuse": {
-            "cwd": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-foo",
+            "cwd": path.join(tmpDir, 'test-foo'),
             "isRoot": false,
-            "repoPath": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-baz",
+            "repoPath": path.join(tmpDir, 'test-baz'),
             "localExists": true,
             "isGitRepo": true,
             "expectedVersion": "master",
@@ -99,9 +103,9 @@
                 "isPrivate": false
               },
               "gitfuse": {
-                "cwd": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-foo",
+                "cwd": path.join(tmpDir, 'test-foo'),
                 "isRoot": false,
-                "repoPath": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-qux",
+                "repoPath": path.join(tmpDir, 'test-qux'),
                 "localExists": true,
                 "isGitRepo": true,
                 "expectedVersion": "master",
@@ -129,9 +133,9 @@
         "isPrivate": false
       },
       "gitfuse": {
-        "cwd": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-foo",
+        "cwd": path.join(tmpDir, 'test-foo'),
         "isRoot": false,
-        "repoPath": "/Users/tkellen/Code/libs/gitfuse/.tmp/test-qux",
+        "repoPath": path.join(tmpDir, 'test-qux'),
         "localExists": true,
         "isGitRepo": true,
         "expectedVersion": "branch",
@@ -143,4 +147,4 @@
       "nodes": []
     }
   ]
-}
+};
