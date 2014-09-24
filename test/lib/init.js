@@ -25,6 +25,14 @@ describe('#init', function() {
     expect(fs.readdirSync(config.repoDir).length).to.equal(4);
   });
 
+  it('should link a repo to dependencies', function() {
+    var testFoo = path.resolve(
+      config.repoDir, config.registry[0].name, 'node_modules'
+    );
+    // confirm that init ran link successfully
+    expect(fs.readdirSync(testFoo)).to.include('test-bar', 'test-qux');
+  });
+
   it('should find missing repos and add them to a directory', function() {
     rimraf(path.join(config.repoDir, config.registry[0].name));
     return fuse.init(config.repoDir, {repos: config.registry})
