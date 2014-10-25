@@ -117,6 +117,35 @@ describe('git', function() {
         });
     });
   });
+
+  describe('#remoteMaxSatisfyingVersion', function() {
+
+    it('should return the max version for a semver range', function() {
+      var remote = resolve.remote(config.registry[1]);
+      return git.remoteMaxSatisfyingVersion(remote, '0.1')
+        .then(function(result) {
+          expect(result).to.equal('0.1.1');
+        });
+    });
+
+    it('should return version if it isn\'t a semver range', function() {
+      var remote = resolve.remote(config.registry[1]);
+      return git.remoteMaxSatisfyingVersion(remote, 'master')
+        .then(function(result) {
+          expect(result).to.equal('master');
+        });
+    });
+
+    it('should error if no version matches', function() {
+      var remote = resolve.remote(config.registry[1]);
+      return git.remoteMaxSatisfyingVersion(remote, '1.0')
+        .catch(function(e) {
+          expect(e).to.be.an.instanceof(Error);
+        });
+    });
+
+  });
+
 /*
   describe('#fetch', function() {
 

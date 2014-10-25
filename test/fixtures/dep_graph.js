@@ -29,7 +29,7 @@ module.exports = {
     "isGitRepo": true,
     "expectedVersion": "0.1.0",
     "localSha": "1cc2684d0f250aedfa7398e03cd8fa785ec97e4d",
-    "remoteSha": false,
+    "remoteSha": "1cc2684d0f250aedfa7398e03cd8fa785ec97e4d",
     "isClean": true
   },
   "label": "test-foo",
