@@ -31,7 +31,7 @@
     "bluebird": "~2.2.1",
     "chalk": "~0.5.0",
     "deptrace": "~0.2.4",
-    "ghauth": "git+ssh://git@github.com:mzgoddard/ghauth.git#authurl-option",
+    "ghauth": "git://github.com/mzgoddard/ghauth.git#authurl-option",
     "lodash": "~2.4.1",
     "linken": "git://github.com/tkellen/node-linken",
     "mkdirp": "~0.5.0",
