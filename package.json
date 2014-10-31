@@ -24,8 +24,7 @@
   "devDependencies": {
     "chai": "~1.9.1",
     "mocha": "~1.18.2",
-    "rimraf": "~2.2.8",
-    "lodash": "~2.4.1"
+    "rimraf": "~2.2.8"
   },
   "dependencies": {
     "archy": "0.0.2",
@@ -33,6 +32,7 @@
     "chalk": "~0.5.0",
     "deptrace": "~0.2.4",
     "ghauth": "~0.3.1",
+    "lodash": "~2.4.1",
     "linken": "git://github.com/tkellen/node-linken",
     "mkdirp": "~0.5.0",
     "request": "~2.37.0",

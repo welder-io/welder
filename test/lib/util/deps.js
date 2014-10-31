@@ -3,6 +3,7 @@ const path = require('path');
 const expect = require('chai').expect;
 
 const deps = require('../../../lib/util/deps');
+const bPromise = require('../../../lib/util/promise');
 
 const helpers = require('../../helpers');
 const config = require('../../fixtures/config');
@@ -43,6 +44,24 @@ describe('deps', function() {
       }).then(function(state) {
         expect(state).to.deep.equal(config.depGraph.gitfuse);
       });
+    });
+
+    it('returns the same for many calls to the same name/version', function() {
+      var meta = require(path.join(testRepoOne, 'package'));
+      var opts = {
+        cwd: testRepoOne,
+        name: meta.name,
+        version: meta.version,
+        registryEntry: require('../../fixtures/registry')[0],
+        isRoot: true
+      };
+      var call0 = deps.state(opts);
+      var call1 = deps.state(opts);
+      expect(call0).to.equal(call1);
+      return bPromise.all([call0, call1])
+        .then(function(states) {
+          expect(states[0]).to.equal(states[1]);
+        });
     });
   })
 
