@@ -1,28 +1,28 @@
 [
   {
     "name": "test-foo",
-    "user": "gitfuse",
+    "user": "welder-io",
     "host": "github.com",
     "sshUser": "git",
     "isPrivate": false
   },
   {
     "name": "test-bar",
-    "user": "gitfuse",
+    "user": "welder-io",
     "host": "github.com",
     "sshUser": "git",
     "isPrivate": false
   },
   {
     "name": "test-baz",
-    "user": "gitfuse",
+    "user": "welder-io",
     "host": "github.com",
     "sshUser": "git",
     "isPrivate": false
   },
   {
     "name": "test-qux",
-    "user": "gitfuse",
+    "user": "welder-io",
     "host": "github.com",
     "sshUser": "git",
     "isPrivate": false
