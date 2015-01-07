@@ -40,7 +40,8 @@ describe('deps', function() {
         name: meta.name,
         version: meta.version,
         registryEntry: require('../../fixtures/registry')[0],
-        isRoot: true
+        isRoot: true,
+        httpsPublic: helpers.httpsPublic,
       }).then(function(state) {
         expect(state).to.deep.equal(config.depGraph.gitfuse);
       });
@@ -53,7 +54,8 @@ describe('deps', function() {
         name: meta.name,
         version: meta.version,
         registryEntry: require('../../fixtures/registry')[0],
-        isRoot: true
+        isRoot: true,
+        httpsPublic: helpers.httpsPublic,
       };
       var call0 = deps.state(opts);
       var call1 = deps.state(opts);

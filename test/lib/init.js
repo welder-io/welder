@@ -9,6 +9,7 @@ const helpers = require('../helpers');
 const Gitfuse = require('../../');
 
 const fuse = new Gitfuse({
+  httpsPublic: helpers.httpsPublic,
   logLevel: 0
 });
 
