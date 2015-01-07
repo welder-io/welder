@@ -16,7 +16,7 @@ module.exports = {
   },
   "registryEntry": {
     "name": "test-foo",
-    "user": "gitfuse",
+    "user": "welder-io",
     "host": "github.com",
     "sshUser": "git",
     "isPrivate": false
@@ -44,7 +44,7 @@ module.exports = {
       },
       "registryEntry": {
         "name": "test-bar",
-        "user": "gitfuse",
+        "user": "welder-io",
         "host": "github.com",
         "sshUser": "git",
         "isPrivate": false
@@ -72,7 +72,7 @@ module.exports = {
           },
           "registryEntry": {
             "name": "test-baz",
-            "user": "gitfuse",
+            "user": "welder-io",
             "host": "github.com",
             "sshUser": "git",
             "isPrivate": false
@@ -97,7 +97,7 @@ module.exports = {
               "private": true,
               "registryEntry": {
                 "name": "test-qux",
-                "user": "gitfuse",
+                "user": "welder-io",
                 "host": "github.com",
                 "sshUser": "git",
                 "isPrivate": false
@@ -127,7 +127,7 @@ module.exports = {
       "private": true,
       "registryEntry": {
         "name": "test-qux",
-        "user": "gitfuse",
+        "user": "welder-io",
         "host": "github.com",
         "sshUser": "git",
         "isPrivate": false
