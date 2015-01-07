@@ -17,6 +17,11 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
   this.dependencyKey = opts.dependencyKey || 'dependencies';
   this.installCommand = opts.installCommand || 'npm install';
 
+  this.httpsPublic = !!(opts.httpsPublic) || false;
+  this.resolveRemoteOptions = {
+    httpsPublic: this.httpsPublic,
+  };
+
   this.deptrace = new Deptrace({
     setup: function() {
       // get registry once for the duration of each graphing run
@@ -54,7 +59,8 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
             cwd: parent.gitfuse.cwd,
             name: meta.name,
             registryEntry: meta.registryEntry,
-            version: parent[this.dependencyKey][meta.name]
+            version: parent[this.dependencyKey][meta.name],
+            httpsPublic: this.httpsPublic,
           }).then(function (state) {
             meta.gitfuse = state;
             return meta;

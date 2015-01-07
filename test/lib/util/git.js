@@ -110,7 +110,11 @@ describe('git', function() {
   describe('#remoteVersions', function() {
 
     it('should return an array of tag and head names for a remote', function() {
-      return git.remoteVersions(resolve.remote(config.registry[1]))
+      var remote = resolve.remote(
+        config.registry[1],
+        { httpsPublic: helpers.httpsPublic }
+      );
+      return git.remoteVersions(remote)
         .then(function(result) {
           expect(result)
             .to.deep.equal(['master', '0.1.0', '0.1.1', 'v0.2.0']);
@@ -121,7 +125,10 @@ describe('git', function() {
   describe('#remoteMaxSatisfyingVersion', function() {
 
     it('should return the max version for a semver range', function() {
-      var remote = resolve.remote(config.registry[1]);
+      var remote = resolve.remote(
+        config.registry[1],
+        { httpsPublic: helpers.httpsPublic }
+      );
       return git.remoteMaxSatisfyingVersion(remote, '0.1')
         .then(function(result) {
           expect(result).to.equal('0.1.1');
@@ -129,7 +136,10 @@ describe('git', function() {
     });
 
     it('should return version if it isn\'t a semver range', function() {
-      var remote = resolve.remote(config.registry[1]);
+      var remote = resolve.remote(
+        config.registry[1],
+        { httpsPublic: helpers.httpsPublic }
+      );
       return git.remoteMaxSatisfyingVersion(remote, 'master')
         .then(function(result) {
           expect(result).to.equal('master');
@@ -137,7 +147,10 @@ describe('git', function() {
     });
 
     it('should error if no version matches', function() {
-      var remote = resolve.remote(config.registry[1]);
+      var remote = resolve.remote(
+        config.registry[1],
+        { httpsPublic: helpers.httpsPublic }
+      );
       return git.remoteMaxSatisfyingVersion(remote, '1.0')
         .catch(function(e) {
           expect(e).to.be.an.instanceof(Error);

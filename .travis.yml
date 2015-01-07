@@ -2,6 +2,8 @@ language: node_js
 node_js:
   - "0.10"
   - "0.11"
+env:
+  - WELDER_PUBLIC_HTTPS=1
 matrix:
   fast_finish: true
   allow_failures:
