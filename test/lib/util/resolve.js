@@ -17,6 +17,17 @@ describe('resolve', function() {
         host: 'test.com',
         sshUser: 'test'
       })).to.equal('test@test.com:test/test.git');
+      expect(resolve.remote({
+        name: 'test',
+        user: 'test',
+        host: 'test.com'
+      }, { httpsPublic: true })).to.equal('https://test.com/test/test.git');
+      expect(resolve.remote({
+        name: 'test',
+        user: 'test',
+        host: 'test.com',
+        sshUser: 'test'
+      }, { httpsPublic: true })).to.equal('https://test.com/test/test.git');
     });
 
   });
