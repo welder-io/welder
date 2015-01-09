@@ -1,4 +1,4 @@
-# gitfuse
+# welder
 > Manage projects with nested git dependencies easily.
 
 ## What is it?
@@ -7,46 +7,46 @@
 
 ### `constructor(opts)`
 
-Create an instance of Gitfuse to work on your project.
+Create an instance of Welder to work on your project.
 
 #### opts.concurrency
 
-The number of concurrent operations Gitfuse will perform.
+The number of concurrent operations Welder will perform.
 
 Type: `Integer`  
 Default: `# of CPUs`
 
 #### opts.moduleDir
 
-Gitfuse will make symlinks to dependencies inside each repository under this directory.
+Welder will make symlinks to dependencies inside each repository under this directory.
 
 Type: `String`  
 Default: `node_modules`
 
 #### opts.configurationFile
 
-Gitfuse will look for this configuration file when tracing the dependency graph. *Must be JSON.*
+Welder will look for this configuration file when tracing the dependency graph. *Must be JSON.*
 
 Type: `String`  
 Default: `package.json`
 
 #### opts.dependencyKey
 
-Gitfuse will look at this key in your configuration file to find its dependencies.
+Welder will look at this key in your configuration file to find its dependencies.
 
 Type: `String`  
-Default: `gitfuseDependencies`
+Default: `welderDependencies`
 
 #### opts.installCommand
 
-Gitfuse will run this command in the folder of each dependency it clones.
+Welder will run this command in the folder of each dependency it clones.
 
 Type: `String`  
 Default: `npm install`
 
 #### opts.registry
 
-A registry of repositories Gitfuse should manage, or a function which returns a promise that resolves to the same.
+A registry of repositories Welder should manage, or a function which returns a promise that resolves to the same.
 
 Type: `Array|Function`  
 Default: `[]`
@@ -55,17 +55,17 @@ Default: `[]`
 
 Using async registry retreival:
 ```js
-const Gitfuse = require('./');
-const fuse = new Gitfuse({
+const Welder = require('./');
+const fuse = new Welder({
   concurrency: 4,
   moduleDir: 'node_modules',
   configurationFile: 'package.json',
-  dependencyKey: 'gitfuseDependencies',
+  dependencyKey: 'welderDependencies',
   installCommand: 'npm install',
   registry: function () {
     return this.requestFileFromGithub({
-      name: 'gitfuse',
-      user: 'gitfuse',
+      name: 'welder',
+      user: 'welder',
       host: 'github.com',
       sshUser: 'git',
       isPrivate: true
@@ -76,38 +76,38 @@ const fuse = new Gitfuse({
 
 Using sync registry definition:
 ```js
-const Gitfuse = require('./');
-const fuse = new Gitfuse({
+const Welder = require('./');
+const fuse = new Welder({
   concurrency: 4,
   moduleDir: 'node_modules',
   configurationFile: 'package.json',
-  dependencyKey: 'gitfuseDependencies',
+  dependencyKey: 'welderDependencies',
   installCommand: 'npm install',
   registry: [
     {
       name: 'test-foo',
-      user: 'gitfuse',
+      user: 'welder',
       host: 'github.com',
       sshUser: 'git',
       isPrivate: false
     },
     {
       name: 'test-bar',
-      user: 'gitfuse',
+      user: 'welder',
       host: 'github.com',
       sshUser: 'git',
       isPrivate: false
     },
     {
       name: 'test-baz',
-      user: 'gitfuse',
+      user: 'welder',
       host: 'github.com',
       sshUser: 'git',
       isPrivate: false
     },
     {
       name: 'test-qux',
-      user: 'gitfuse',
+      user: 'welder',
       host: 'github.com',
       sshUser: 'git',
       isPrivate: false
@@ -118,7 +118,7 @@ const fuse = new Gitfuse({
 
 ### `events`
 
-Gitfuse subclasses [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).  The following is available on each instance:
+Welder subclasses [EventEmitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).  The following is available on each instance:
 
 #### .on('debug', Function)
 Verbose logging typically meant to be ignored unless explicitly requested.
@@ -134,7 +134,7 @@ Standard logging for failure messages during execution.
 
 ### `init(dir, opts)`
 
-Use this to initialize a directory with all repositories your instance of Gitfuse is managing.
+Use this to initialize a directory with all repositories your instance of Welder is managing.
 
 Does the following:
 
@@ -155,7 +155,7 @@ Example entry format:
 ```js
 {
   name: 'test-foo',
-  user: 'gitfuse',
+  user: 'welder',
   host: 'github.com',
   sshUser: 'git',
   isPrivate: false
@@ -164,15 +164,15 @@ Example entry format:
 
 Usage:
 ```js
-const Gitfuse = require('./');
+const Welder = require('./');
 const chalk = require('chalk');
 const DEBUG = true;
 
-const fuse = new Gitfuse({
+const fuse = new Welder({
   registry: function () {
     return this.requestFileFromGithub({
-      name: 'gitfuse',
-      user: 'gitfuse',
+      name: 'welder',
+      user: 'welder',
       host: 'github.com',
       sshUser: 'git',
       isPrivate: true

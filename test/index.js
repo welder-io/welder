@@ -1,4 +1,4 @@
-describe('Gitfuse', function() {
+describe('Welder', function() {
   require('./lib/util/deps');
   require('./lib/util/exec');
   require('./lib/util/git');

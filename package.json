@@ -1,18 +1,18 @@
 {
-  "name": "gitfuse",
+  "name": "welder",
   "description": "Manage projects with nested git dependencies easily.",
   "version": "0.1.0",
-  "homepage": "https://github.com/gitfuse/gitfuse",
+  "homepage": "https://github.com/welder-io/welder",
   "authors": [
     "Tyler Kellen <tyler@sleekcode.net>",
     "Michael \"Z\" Goddard <mzgoddard@gmail.com>"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/gitfuse/gitfuse.git"
+    "url": "git://github.com/welder-io/welder.git"
   },
   "bugs": {
-    "url": "https://github.com/gitfuse/gitfuse/issues"
+    "url": "https://github.com/welder-io/welder/issues"
   },
   "main": "index.js",
   "engines": {

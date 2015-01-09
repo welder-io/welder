@@ -21,7 +21,7 @@ module.exports = {
     "sshUser": "git",
     "isPrivate": false
   },
-  "gitfuse": {
+  "welder": {
     "cwd": path.join(tmpDir, 'test-foo'),
     "isRoot": true,
     "repoPath": path.join(tmpDir, 'test-foo'),
@@ -49,7 +49,7 @@ module.exports = {
         "sshUser": "git",
         "isPrivate": false
       },
-      "gitfuse": {
+      "welder": {
         "cwd": path.join(tmpDir, 'test-foo'),
         "isRoot": false,
         "repoPath": path.join(tmpDir, 'test-bar'),
@@ -77,7 +77,7 @@ module.exports = {
             "sshUser": "git",
             "isPrivate": false
           },
-          "gitfuse": {
+          "welder": {
             "cwd": path.join(tmpDir, 'test-foo'),
             "isRoot": false,
             "repoPath": path.join(tmpDir, 'test-baz'),
@@ -102,7 +102,7 @@ module.exports = {
                 "sshUser": "git",
                 "isPrivate": false
               },
-              "gitfuse": {
+              "welder": {
                 "cwd": path.join(tmpDir, 'test-foo'),
                 "isRoot": false,
                 "repoPath": path.join(tmpDir, 'test-qux'),
@@ -132,7 +132,7 @@ module.exports = {
         "sshUser": "git",
         "isPrivate": false
       },
-      "gitfuse": {
+      "welder": {
         "cwd": path.join(tmpDir, 'test-foo'),
         "isRoot": false,
         "repoPath": path.join(tmpDir, 'test-qux'),

@@ -7,7 +7,7 @@ const Deptrace = require('deptrace');
 const github = require('./lib/util/github');
 const deps = require('./lib/util/deps');
 
-const Gitfuse = module.exports = function Gitfuse(opts) {
+const Welder = module.exports = function Welder(opts) {
   opts = opts || {};
 
   this.concurrency = opts.concurrency || require('os').cpus().length;
@@ -51,25 +51,25 @@ const Gitfuse = module.exports = function Gitfuse(opts) {
         .then(function(meta) {
           var parent = parents[parents.length -1];
           return deps.state({
-            cwd: parent.gitfuse.cwd,
+            cwd: parent.welder.cwd,
             name: meta.name,
             registryEntry: meta.registryEntry,
             version: parent[this.dependencyKey][meta.name]
           }).then(function (state) {
-            meta.gitfuse = state;
+            meta.welder = state;
             return meta;
           });
         }.bind(this));
     }.bind(this)
   });
 };
-util.inherits(Gitfuse, EE);
+util.inherits(Welder, EE);
 
-Gitfuse.prototype.init = require('./lib/init');
-Gitfuse.prototype.graph = require('./lib/graph');
-Gitfuse.prototype.status = require('./lib/status');
-Gitfuse.prototype.sync = require('./lib/sync');
-Gitfuse.prototype.find = require('./lib/find');
-Gitfuse.prototype.loadRegistry = require('./lib/load_registry');
-Gitfuse.prototype.requestFileFromGithub =
+Welder.prototype.init = require('./lib/init');
+Welder.prototype.graph = require('./lib/graph');
+Welder.prototype.status = require('./lib/status');
+Welder.prototype.sync = require('./lib/sync');
+Welder.prototype.find = require('./lib/find');
+Welder.prototype.loadRegistry = require('./lib/load_registry');
+Welder.prototype.requestFileFromGithub =
   require('./lib/util/github').requestFile;
