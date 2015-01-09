@@ -1,8 +1,8 @@
 const expect = require('chai').expect;
 
-const Gitfuse = require('../../');
+const Welder = require('../../');
 const registry = require('../fixtures/config').registry;
-const fuse = new Gitfuse({ registry: registry });
+const fuse = new Welder({ registry: registry });
 
 describe('#find', function() {
 

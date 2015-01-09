@@ -4,9 +4,9 @@ const rimraf = require('rimraf').sync;
 
 const config = require('./fixtures/config');
 
-const Gitfuse = require('../');
+const Welder = require('../');
 
-const fuse = new Gitfuse({
+const fuse = new Welder({
   logLevel: 0,
   registry: config.registry,
   dependencyKey: 'gitfuseDependencies'

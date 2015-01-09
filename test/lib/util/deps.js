@@ -42,7 +42,7 @@ describe('deps', function() {
         registryEntry: require('../../fixtures/registry')[0],
         isRoot: true
       }).then(function(state) {
-        expect(state).to.deep.equal(config.depGraph.gitfuse);
+        expect(state).to.deep.equal(config.depGraph.welder);
       });
     });
 
