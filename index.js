@@ -32,34 +32,44 @@ const Welder = module.exports = function Welder(opts) {
     resolve: function(dep, parents) {
       // find dependency in registry
       return this.find(dep.name, this.registryResolved)
+        .bind(this)
+        // add state from local machine
         .then(function(registryEntry) {
+          var parent = parents[parents.length - 1];
+          var entryCopy = _.clone(registryEntry);
+          return deps
+            .state({
+              cwd: parent.welder.cwd,
+              name: registryEntry.name,
+              registryEntry: registryEntry,
+              version: parent[this.dependencyKey][registryEntry.name],
+            })
+            .then(function(entry, state) {
+              return {
+                registryEntry: entry,
+                welder: state,
+              };
+            }.bind(null, entryCopy));
+        })
+        .then(function(meta) {
           var config = this.configurationFile;
           // find config file on github
+          var registryEntry = meta.registryEntry;
+          registryEntry.version = meta.welder.expectedVersion;
           return github.requestFile(registryEntry, config)
             .then(JSON.parse)
-            .then(function (json) {
+            .then(function(json) {
               // save registryEntry data on configuration file
               json.registryEntry = registryEntry;
+              json.welder = meta.welder;
               return json;
-            }).catch(function() {
+            })
+            .catch(function() {
               throw new Error(
                 'Unable to find ' + config + ' for ' + registryEntry.name
               );
             });
-        }.bind(this))
-        // add state from local machine
-        .then(function(meta) {
-          var parent = parents[parents.length -1];
-          return deps.state({
-            cwd: parent.welder.cwd,
-            name: meta.name,
-            registryEntry: meta.registryEntry,
-            version: parent[this.dependencyKey][meta.name]
-          }).then(function (state) {
-            meta.welder = state;
-            return meta;
-          });
-        }.bind(this));
+        });
     }.bind(this)
   });
 };
@@ -68,6 +78,7 @@ util.inherits(Welder, EE);
 Welder.prototype.init = require('./lib/init');
 Welder.prototype.graph = require('./lib/graph');
 Welder.prototype.status = require('./lib/status');
+Welder.prototype.shrinkwrap = require('./lib/shrinkwrap');
 Welder.prototype.sync = require('./lib/sync');
 Welder.prototype.find = require('./lib/find');
 Welder.prototype.loadRegistry = require('./lib/load_registry');

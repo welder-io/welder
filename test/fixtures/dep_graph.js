@@ -48,7 +48,8 @@ module.exports = {
         "user": "welder-io",
         "host": "github.com",
         "sshUser": "git",
-        "isPrivate": false
+        "isPrivate": false,
+        "version": "master"
       },
       "welder": {
         "cwd": path.join(tmpDir, 'test-foo'),
@@ -77,7 +78,8 @@ module.exports = {
             "user": "welder-io",
             "host": "github.com",
             "sshUser": "git",
-            "isPrivate": false
+            "isPrivate": false,
+            "version": "master"
           },
           "welder": {
             "cwd": path.join(tmpDir, 'test-foo'),
@@ -103,7 +105,8 @@ module.exports = {
                 "user": "welder-io",
                 "host": "github.com",
                 "sshUser": "git",
-                "isPrivate": false
+                "isPrivate": false,
+                "version": "master"
               },
               "welder": {
                 "cwd": path.join(tmpDir, 'test-foo'),
@@ -134,7 +137,8 @@ module.exports = {
         "user": "welder-io",
         "host": "github.com",
         "sshUser": "git",
-        "isPrivate": false
+        "isPrivate": false,
+        "version": "branch"
       },
       "welder": {
         "cwd": path.join(tmpDir, 'test-foo'),
