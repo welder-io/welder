@@ -193,6 +193,9 @@ fuse.on('ok', function(msg) {
 fuse.on('error', function(msg) {
   console.log(chalk.red(msg));
 });
+fuse.on('warn', function(msg) {
+  console.log(chalk.yellow(msg));
+});
 
 fuse.repos('./test');
 ```
