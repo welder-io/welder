@@ -90,6 +90,28 @@ describe('git', function() {
 
   });
 
+  describe("#remoteRef", function() {
+
+    it('should resolve the ref for a sha on the remote', function() {
+      return git.remote(testBar).then(function(remote) {
+        return git
+          .remoteRef(
+            testBar, 'origin', '47e1d99cba8ccb24624c571bbf420b2c09a3e326'
+          )
+          .then(function(result) {
+            expect(result).to.equal('v0.2.0');
+          })
+          .return(git.remoteRef(
+            testBar, remote, '47e1d99cba8ccb24624c571bbf420b2c09a3e326'
+          ))
+          .then(function(result) {
+            expect(result).to.equal('v0.2.0');
+          });
+      });
+    });
+
+  });
+
   describe('#isClean', function() {
 
     it('should eventually be true if repo is clean', function() {
