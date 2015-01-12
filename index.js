@@ -4,8 +4,9 @@ const util = require('util');
 const _ = require('lodash');
 const Deptrace = require('deptrace');
 
-const github = require('./lib/util/github');
 const deps = require('./lib/util/deps');
+const github = require('./lib/util/github');
+const promise = require('./lib/util/promise');
 
 const Welder = module.exports = function Welder(opts) {
   opts = opts || {};
@@ -56,8 +57,31 @@ const Welder = module.exports = function Welder(opts) {
           // find config file on github
           var registryEntry = meta.registryEntry;
           registryEntry.version = meta.welder.expectedVersion;
-          return github.requestFile(registryEntry, config)
-            .then(JSON.parse)
+
+          var packageJson;
+          var parent = parents[parents.length - 1];
+          if (parent.shrinkwrap) {
+            var shrinkwrap = _.find(
+              parent.shrinkwrap[this.dependencyKey],
+              function(dep) {
+                return dep.name === registryEntry.name;
+              }
+            );
+            var packageObj = {
+              name: registryEntry.name,
+              shrinkwrap: shrinkwrap,
+            };
+            var packageDeps = packageObj[this.dependencyKey] = {};
+            (shrinkwrap[this.dependencyKey] || []).forEach(function(obj) {
+              packageDeps[obj.name] = obj.version;
+            });
+            packageJson = promise.resolve(packageObj);
+          } else {
+            packageJson = github.requestFile(registryEntry, config)
+              .then(JSON.parse);
+          }
+
+          return packageJson
             .then(function(json) {
               // save registryEntry data on configuration file
               json.registryEntry = registryEntry;
