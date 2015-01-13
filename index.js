@@ -26,3 +26,4 @@ Welder.prototype.init = require('./lib/init');
 Welder.prototype.status = require('./lib/status');
 Welder.prototype.shrinkwrap = require('./lib/shrinkwrap');
 Welder.prototype.sync = require('./lib/sync');
+Welder.prototype.version = require('./lib/version');
