@@ -4,6 +4,7 @@ const path = require('path');
 const expect = require('chai').expect;
 
 const git = require('../../../lib/util/git');
+const pfs = require('../../../lib/util/pfs');
 const resolve = require('../../../lib/util/resolve');
 
 const helpers = require('../../helpers');
@@ -30,6 +31,35 @@ describe('git', function() {
       git.clone('git@github.com:fake/fake.git').catch(function() {
         done();
       });
+    });
+
+  });
+
+  describe('#commit', function() {
+
+    after(function() {
+      return helpers.setup();
+    });
+
+    it('should not throw', function() {
+      var fileName = 'new-file.txt';
+      var filePath = path.join(testBar, fileName)
+      return pfs.writeFile(filePath, 'content', 'utf8')
+        .then(function() {
+          return git.commit(testBar, [fileName], 'Add new file');
+        });
+    });
+
+  });
+
+  describe('#tag', function() {
+
+    after(function() {
+      return helpers.setup();
+    });
+
+    it('should tag a version', function() {
+      return git.tag(testBar, '1.0.0', '1.0.0');
     });
 
   });
