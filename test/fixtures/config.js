@@ -11,6 +11,12 @@ module.exports = {
   shrinkwrap: {
     expect: require('./shrinkwrap_expect'),
   },
+  sync: {
+    expect: require('./sync_expect'),
+    fromShrinkwrap: require('./sync_from_shrinkwrap'),
+    fromShrinkwrapExpect: require('./sync_from_shrinkwrap_expect'),
+    fromShrinkwrapBadSha: require('./sync_from_shrinkwrap_bad_sha'),
+  },
 };
 
 module.exports.flatDepGraph = [

@@ -13,5 +13,6 @@ describe('Welder', function() {
   require('./lib/graph');
   require('./lib/init');
   require('./lib/shrinkwrap');
+  require('./lib/sync');
 
 });
