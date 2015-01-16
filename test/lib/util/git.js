@@ -165,7 +165,16 @@ describe('git', function() {
       return git.remoteVersions(resolve.remote(config.registry[1]))
         .then(function(result) {
           expect(result)
-            .to.deep.equal(['master', '0.1.0', '0.1.1', 'v0.2.0']);
+            .to.deep.equal([
+              'master',
+              '0.1.0',
+              '0.1.1',
+              '0.3.0',
+              '0.3.1',
+              '0.3.2',
+              '0.4.0',
+              'v0.2.0'
+            ]);
         });
     });
   });
