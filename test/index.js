@@ -14,5 +14,6 @@ describe('Welder', function() {
   require('./lib/init');
   require('./lib/shrinkwrap');
   require('./lib/sync');
+  require('./lib/version');
 
 });
