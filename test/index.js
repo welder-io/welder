@@ -9,12 +9,9 @@ describe('Welder', function() {
   require('./lib/util/promise');
   require('./lib/util/resolve');
 
-  describe('constructor', function() {
-
-  });
-
-  require('./lib/init');
   require('./lib/find');
   require('./lib/graph');
+  require('./lib/init');
+  require('./lib/shrinkwrap');
 
 });
