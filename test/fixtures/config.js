@@ -7,7 +7,16 @@ const tmpPath = path.resolve(__dirname, '..', '..', '.tmp');
 module.exports = {
   registry: require('./registry'),
   repoDir: tmpPath,
-  depGraph: require('./dep_graph')
+  depGraph: require('./dep_graph'),
+  shrinkwrap: {
+    expect: require('./shrinkwrap_expect'),
+  },
+  sync: {
+    expect: require('./sync_expect'),
+    fromShrinkwrap: require('./sync_from_shrinkwrap'),
+    fromShrinkwrapExpect: require('./sync_from_shrinkwrap_expect'),
+    fromShrinkwrapBadSha: require('./sync_from_shrinkwrap_bad_sha'),
+  },
 };
 
 module.exports.flatDepGraph = [

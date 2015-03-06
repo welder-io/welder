@@ -5,14 +5,14 @@ const tmpDir = path.resolve(__dirname, '..', '..', '.tmp');
 module.exports = {
   "name": "test-foo",
   "description": "test repo for gitfuse",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "lodash": "~2.4.1"
   },
   "gitfuseDependencies": {
-    "test-bar": "master",
-    "test-qux": "branch"
+    "test-bar": "~0.3.0",
+    "test-qux": "~0.2.0"
   },
   "registryEntry": {
     "name": "test-foo",
@@ -27,21 +27,21 @@ module.exports = {
     "repoPath": path.join(tmpDir, 'test-foo'),
     "localExists": true,
     "isGitRepo": true,
-    "localVersion": "0.1.0",
-    "expectedVersion": "0.1.0",
-    "localSha": "1cc2684d0f250aedfa7398e03cd8fa785ec97e4d",
-    "remoteSha": "1cc2684d0f250aedfa7398e03cd8fa785ec97e4d",
+    "localVersion": "0.2.0",
+    "expectedVersion": "0.2.0",
+    "localSha": "65b3c7fc221c57d009ab3a608714e7e59f0a08e5",
+    "remoteSha": "65b3c7fc221c57d009ab3a608714e7e59f0a08e5",
     "isClean": true
   },
   "label": "test-foo",
   "nodes": [
     {
       "name": "test-bar",
-      "version": "0.2.0",
+      "version": "0.3.2",
       "description": "test repo for gitfuse",
       "private": true,
       "gitfuseDependencies": {
-        "test-baz": "master"
+        "test-baz": "~0.3.0"
       },
       "registryEntry": {
         "name": "test-bar",
@@ -49,7 +49,7 @@ module.exports = {
         "host": "github.com",
         "sshUser": "git",
         "isPrivate": false,
-        "version": "master"
+        "version": "0.3.2"
       },
       "welder": {
         "cwd": path.join(tmpDir, 'test-foo'),
@@ -57,21 +57,21 @@ module.exports = {
         "repoPath": path.join(tmpDir, 'test-bar'),
         "localExists": true,
         "isGitRepo": true,
-        "localVersion": "v0.2.0",
-        "expectedVersion": "master",
-        "localSha": "47e1d99cba8ccb24624c571bbf420b2c09a3e326",
-        "remoteSha": "47e1d99cba8ccb24624c571bbf420b2c09a3e326",
+        "localVersion": "0.3.2",
+        "expectedVersion": "0.3.2",
+        "localSha": "dde43cd5b60400d8257f7c752c3408d20f15f6d4",
+        "remoteSha": "dde43cd5b60400d8257f7c752c3408d20f15f6d4",
         "isClean": true
       },
       "label": "test-bar",
       "nodes": [
         {
           "name": "test-baz",
-          "version": "0.2.0",
+          "version": "0.3.2",
           "description": "test repo for gitfuse",
           "private": true,
           "gitfuseDependencies": {
-            "test-qux": "master"
+            "test-qux": "~0.2.0"
           },
           "registryEntry": {
             "name": "test-baz",
@@ -79,7 +79,7 @@ module.exports = {
             "host": "github.com",
             "sshUser": "git",
             "isPrivate": false,
-            "version": "master"
+            "version": "0.3.2"
           },
           "welder": {
             "cwd": path.join(tmpDir, 'test-foo'),
@@ -87,10 +87,10 @@ module.exports = {
             "repoPath": path.join(tmpDir, 'test-baz'),
             "localExists": true,
             "isGitRepo": true,
-            "localVersion": "master",
-            "expectedVersion": "master",
-            "localSha": "77b8d34410b2bb0e0769102d7056d13aea4f4075",
-            "remoteSha": "77b8d34410b2bb0e0769102d7056d13aea4f4075",
+            "localVersion": "0.3.2",
+            "expectedVersion": "0.3.2",
+            "localSha": "eb31e6647ad023a3cb2386d266b0d125d656041e",
+            "remoteSha": "eb31e6647ad023a3cb2386d266b0d125d656041e",
             "isClean": true
           },
           "label": "test-baz",
@@ -98,7 +98,7 @@ module.exports = {
             {
               "name": "test-qux",
               "description": "test repo for gitfuse",
-              "version": "0.1.0",
+              "version": "0.2.2",
               "private": true,
               "registryEntry": {
                 "name": "test-qux",
@@ -106,7 +106,7 @@ module.exports = {
                 "host": "github.com",
                 "sshUser": "git",
                 "isPrivate": false,
-                "version": "master"
+                "version": "0.2.2"
               },
               "welder": {
                 "cwd": path.join(tmpDir, 'test-foo'),
@@ -114,10 +114,10 @@ module.exports = {
                 "repoPath": path.join(tmpDir, 'test-qux'),
                 "localExists": true,
                 "isGitRepo": true,
-                "localVersion": "master",
-                "expectedVersion": "master",
-                "localSha": "3e08d75d3eb59762f36d2e39c00275db9da2d16d",
-                "remoteSha": "3e08d75d3eb59762f36d2e39c00275db9da2d16d",
+                "localVersion": "0.2.2",
+                "expectedVersion": "0.2.2",
+                "localSha": "aecec7eeaef2ca59f5ee1c1c78b3a2fa68f223d9",
+                "remoteSha": "aecec7eeaef2ca59f5ee1c1c78b3a2fa68f223d9",
                 "isClean": true
               },
               "label": "test-qux",
@@ -130,7 +130,7 @@ module.exports = {
     {
       "name": "test-qux",
       "description": "test repo for gitfuse",
-      "version": "0.1.0",
+      "version": "0.2.2",
       "private": true,
       "registryEntry": {
         "name": "test-qux",
@@ -138,7 +138,7 @@ module.exports = {
         "host": "github.com",
         "sshUser": "git",
         "isPrivate": false,
-        "version": "branch"
+        "version": "0.2.2"
       },
       "welder": {
         "cwd": path.join(tmpDir, 'test-foo'),
@@ -146,10 +146,10 @@ module.exports = {
         "repoPath": path.join(tmpDir, 'test-qux'),
         "localExists": true,
         "isGitRepo": true,
-        "localVersion": "master",
-        "expectedVersion": "branch",
-        "localSha": "3e08d75d3eb59762f36d2e39c00275db9da2d16d",
-        "remoteSha": "0685562ba8d4a26a2004b3fcfcdb2166ef6265e3",
+        "localVersion": "0.2.2",
+        "expectedVersion": "0.2.2",
+        "localSha": "aecec7eeaef2ca59f5ee1c1c78b3a2fa68f223d9",
+        "remoteSha": "aecec7eeaef2ca59f5ee1c1c78b3a2fa68f223d9",
         "isClean": true
       },
       "label": "test-qux",

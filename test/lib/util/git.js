@@ -4,6 +4,7 @@ const path = require('path');
 const expect = require('chai').expect;
 
 const git = require('../../../lib/util/git');
+const pfs = require('../../../lib/util/pfs');
 const resolve = require('../../../lib/util/resolve');
 
 const helpers = require('../../helpers');
@@ -30,6 +31,35 @@ describe('git', function() {
       git.clone('git@github.com:fake/fake.git').catch(function() {
         done();
       });
+    });
+
+  });
+
+  describe('#commit', function() {
+
+    after(function() {
+      return helpers.setup();
+    });
+
+    it('should not throw', function() {
+      var fileName = 'new-file.txt';
+      var filePath = path.join(testBar, fileName)
+      return pfs.writeFile(filePath, 'content', 'utf8')
+        .then(function() {
+          return git.commit(testBar, [fileName], 'Add new file');
+        });
+    });
+
+  });
+
+  describe('#tag', function() {
+
+    after(function() {
+      return helpers.setup();
+    });
+
+    it('should tag a version', function() {
+      return git.tag(testBar, '1.0.0', '1.0.0');
     });
 
   });
@@ -90,6 +120,28 @@ describe('git', function() {
 
   });
 
+  describe("#remoteRef", function() {
+
+    it('should resolve the ref for a sha on the remote', function() {
+      return git.remote(testBar).then(function(remote) {
+        return git
+          .remoteRef(
+            testBar, 'origin', '47e1d99cba8ccb24624c571bbf420b2c09a3e326'
+          )
+          .then(function(result) {
+            expect(result).to.equal('v0.2.0');
+          })
+          .return(git.remoteRef(
+            testBar, remote, '47e1d99cba8ccb24624c571bbf420b2c09a3e326'
+          ))
+          .then(function(result) {
+            expect(result).to.equal('v0.2.0');
+          });
+      });
+    });
+
+  });
+
   describe('#isClean', function() {
 
     it('should eventually be true if repo is clean', function() {
@@ -113,7 +165,16 @@ describe('git', function() {
       return git.remoteVersions(resolve.remote(config.registry[1]))
         .then(function(result) {
           expect(result)
-            .to.deep.equal(['master', '0.1.0', '0.1.1', 'v0.2.0']);
+            .to.deep.equal([
+              'master',
+              '0.1.0',
+              '0.1.1',
+              '0.3.0',
+              '0.3.1',
+              '0.3.2',
+              '0.4.0',
+              'v0.2.0'
+            ]);
         });
     });
   });

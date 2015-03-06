@@ -14,7 +14,7 @@ const fuse = new Welder({
 
 const testRepoOne = path.resolve(config.repoDir, config.registry[0].name);
 
-describe('#graph', function() {
+describe('#graphTarget', function() {
 
   this.timeout(20000);
 
@@ -23,7 +23,7 @@ describe('#graph', function() {
   });
 
   it('should perform a networked dependency graph', function() {
-    return fuse.graph(testRepoOne).then(function(graph) {
+    return fuse.graphTarget(testRepoOne).then(function(graph) {
       expect(graph).to.deep.equal(config.depGraph);
     });
   });

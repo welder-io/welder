@@ -11,4 +11,6 @@ script:
   - cp .travis.id_rsa ~/.ssh/id_rsa
   - chmod 0600 ~/.ssh/id_rsa
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - git config --global user.email test@welder.io
+  - git config --global user.name welder-io-ci
   - npm test
