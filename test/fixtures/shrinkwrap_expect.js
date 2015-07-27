@@ -5,8 +5,8 @@ module.exports = {
   "nodeDependencies": {
     "lodash": {
       "from": "lodash@>=2.4.1 <2.5.0",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-2.4.1.tgz",
-      "version": "2.4.1"
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-2.4.2.tgz",
+      "version": "2.4.2"
     }
   },
   "gitfuseDependencies": [
