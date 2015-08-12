@@ -1,7 +1,7 @@
 {
   "name": "welder",
   "description": "Manage projects with nested git dependencies easily.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/welder-io/welder",
   "authors": [
     "Tyler Kellen <tyler@sleekcode.net>",
