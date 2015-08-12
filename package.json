@@ -7,6 +7,7 @@
     "Tyler Kellen <tyler@sleekcode.net>",
     "Michael \"Z\" Goddard <mzgoddard@gmail.com>"
   ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/welder-io/welder.git"
